@@ -1,3 +1,6 @@
 [submodule "docker"]
 	path = docker
 	url = git@github.com:redis-developer/redismod-docker-compose.git
+[submodule "src/main/resources/data"]
+	path = src/main/resources/data
+	url = git@github.com:redis-developer/redi2read-data.git
