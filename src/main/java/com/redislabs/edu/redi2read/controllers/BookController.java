@@ -17,6 +17,7 @@ import com.redislabs.lettusearch.SuggetOptions;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -73,6 +74,7 @@ public class BookController {
 	private StatefulRediSearchConnection<String, String> searchConnection;
 
   @GetMapping("/search")
+  @Cacheable("book-search")
   public SearchResults<String,String> search(@RequestParam(name="q")String query) {
     RediSearchCommands<String, String> commands = searchConnection.sync();
     SearchResults<String, String> results = commands.search(searchIndexName, query);
